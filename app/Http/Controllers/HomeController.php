@@ -112,7 +112,8 @@ class HomeController extends Controller
     }
 
     public function updatedata(Request $request)
-    {
+    {     
+        
         $id         = $request->id; 
         $name       = $request->name;
         $password   = Hash::make($request->password);
@@ -121,7 +122,7 @@ class HomeController extends Controller
                            'email'  => $email,
                            'password'  => $password,
                             );
-
+ 
        $query       = user::where('id', $id)->update($data);
        if($query == TRUE)
        {
