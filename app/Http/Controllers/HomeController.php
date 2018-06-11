@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+ini_set('memory_limit', '-1');
 use Illuminate\Http\Request;
 use Auth;
 use Hash;
@@ -99,8 +99,7 @@ class HomeController extends Controller
     {
 
         $user=Auth::user();
-        $all['data'] = $user->all();
-       
+         $all['data']  = user::select('*')->where('status', 1)->get();
          return view('alluserdetails',$all);
     }
 
@@ -130,6 +129,27 @@ class HomeController extends Controller
                             ->withErrors('Data updated successfully')
                             ->withInput();
        }
+    }
+
+    public function deleteuser($id)
+    {
+
+        $query       = user::where('id', $id)->update(array('status' => 0));
+
+        if ($query == TRUE) {
+
+            $msg = ' <div class="alert alert-success">
+                          <strong>Success!</strong> Indicates a successful or positive action.
+                        </div>';
+            // return redirect('userdetails')
+            //                 ->withErrors('Data deleted successfully')
+            //                 ->withInput();
+
+        return redirect()->back()->with('message', 'Deleted successfully!');
+
+        }
+        else
+            echo "failed";
     }
 
 }
