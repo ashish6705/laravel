@@ -31,16 +31,15 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        // $name['username'] = Auth::user()->name;
-        // $name['email'] = Auth::user()->email;
-        // $name['username'] = Auth::user()->name;
-        $data['data1'] = ['name'=>Auth::user()->name,
-                 'email'=>Auth::user()->email,
-                 'password'=>'**********',
-                 'id'     => Auth::user()->id,
-                    ];
+       
+        // $data['data1'] = ['name'=>Auth::user()->name,
+        //          'email'=>Auth::user()->email,
+        //          'password'=>'**********',
+        //          'id'     => Auth::user()->id,
+        //             ];
                 
-        return view('home',$data);
+        // return view('home',$data);
+        return view('demo');
     }
 
     public function gotochangepassword()
