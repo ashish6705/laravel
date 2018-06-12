@@ -24,6 +24,9 @@ Route::get('/userdetails', 'HomeController@gotouserdetails');
 Route::get('/edit/{id}', 'HomeController@gotoedit');
 Route::post('/update', 'HomeController@updatedata');
 Route::get('/delete/{id}', 'HomeController@deleteuser');
+Route::post('/demoform', 'HomeController@demo_draft');
+
+
 
 
 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use Hash;
 use App\User;
+use App\Draft;
+use DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Contracts\Encryption\Encrypter;
@@ -149,6 +151,31 @@ class HomeController extends Controller
         }
         else
             echo "failed";
+    }
+
+    public function demo_draft(Request $request)
+    {
+        //Using ORM not Query BUilder..........
+       $obj = new Draft();
+       $obj->title    = $request->title;
+       $obj->content  = $request->content;
+       $obj->category = $request->cat;
+       $obj->Tags     = $request->tags;
+
+//Join for future empliment.......................query builder
+
+//       echo $users = DB::table('users')
+//             ->join('draft', 'users.id', '=', 'draft.id')
+//             ->select('users.*', 'draft.title', 'draft.content')
+//             ->get();
+            
+// die;
+
+       $result        = $obj->save();
+       if($result == TRUE)
+        return redirect()->back()->with('message', 'Inserted successfully!');
+      else
+        return redirect()->back()->with('message', 'Insertion Failed!');
     }
 
 }
